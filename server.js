@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
@@ -23,6 +24,7 @@ app.use(session({
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
   cookie: { maxAge: 210000}
 }));
 app.use((req, res, next) => {
