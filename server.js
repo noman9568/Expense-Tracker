@@ -14,7 +14,6 @@ mongoose.connect(DB_URI);
 const userD = require('./models/userD');
 const userDetails = require('./models/userDetails');
 const { hash } = require('crypto');
-const { default: mongoose } = require('mongoose');
 
 app.use(express.static('public'));
 app.set('view engine','ejs');
