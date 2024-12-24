@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <title>Login</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      /* outline: 1px solid red; */
+      font-family: 'Poppins',sans-serif;
+    }
+    body {
+      background: linear-gradient(to right, #c2d5de, #b8b8d6);
+    }
+    .container{
+      margin: 0 auto;
+      margin-top: 4rem;
+      font-size: 1.1rem;
+      max-width: max-content;
+      /* border: 1px solid; */
+      box-shadow: 0px 2px 8px rgba(0, 0, 0,0.8);
+      padding: 2.5rem 1.5rem;
+      border-radius: 0.5rem;
+      background: linear-gradient(to right, #8f7ee7, #adeaee);
+      /* background-color: rgb(248, 248, 248); */
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .input-field{
+      border: 1px solid rgb(0, 0, 0);
+      border-radius: 2px;
+      padding-top: 4px;
+      padding-bottom: 3px;
+    }
+    input{
+      max-width: 200px;
+      padding-left: 6px;
+      font-family: 'Poppins',sans-serif;
+    }
+    input:focus{
+      outline: 0;
+    }
+    h2{
+      text-align: center;
+      font-weight: 400;
+      color: blue;
+      font-size: 2rem;
+    }
+    .btn{
+      font-size: 16px;
+      background-color: white;
+      cursor: pointer;
+      padding: 2px 12px;
+      width: max-content;
+      border: 1px solid purple;
+      border-radius: 3px;
+      transition: all 0.3s ease-in-out;
+    }
+    .btn:hover{
+      background-color: rgb(167, 1, 167);
+      color: white;
+    }
+    .sign-up{
+      text-align: center;
+      font-size: 16px;
+    }
+    a{
+      text-decoration: none;
+      display: inline-block;
+      color: rgb(25, 60, 158);
+      font-family: 'Poppins',sans-serif;
+      font-weight: 400;
+      transition: transform 0.3s ease-in-out;
+    }
+    a:hover{
+      color: black;
+      transform: translateY(-5px);
+    }
+    .message1{
+      font-size: 15px;
+      color: red;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Register</h2>
+    <br>
+    <form action="/register" method="post">
+      <section>
+        <label for="name">Name : </label>
+        <input type="text" name="name" placeholder="Enter your name..." class="input-field" required>
+      </section>
+      <section>
+        <label for="email">Email : </label>
+        <input type="email" name="email" placeholder="Enter your email..." class="input-field" required>
+      </section>
+      <section>
+        <label for="username">UserName : </label>
+        <input type="text" name="username" placeholder="Enter your username..." class="input-field" required>
+      </section>
+      <section>
+        <label for="password">Password : </label>
+        <input type="password" name="password" placeholder="Enter your password..." class="input-field" required>
+      </section>
+      <input type="submit" value="Register" class="btn">
+      <div class="sign-up"><a href="/login">Existing User! Log In</a></div>
+      <% if(message){ %>
+        <div class="message1"><%= message %></div>
+       <% } %>
+    </form>
+  </div>
+</body>
+</html>
+

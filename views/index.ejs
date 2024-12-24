@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins',serif;
+      /* outline: 1px solid red; */
+    }
+    body {
+      background: linear-gradient(to right, #dce4e1, #e2e4cf);
+    }
+    .container{
+      width: 80vw;
+      margin: 0 auto;
+      margin-top: 2rem;
+    }
+    .header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+    h2{
+      font-weight: 400;
+      color: #002D62;
+      font-size: 1.8rem;
+      background-color: transparent;
+    }
+    form , .nav{
+      display: flex;
+    }
+    .nav{
+      gap: 1.5rem;
+      background-color: transparent;
+      align-items: center;
+    }
+    a{
+      text-decoration: none;
+      font-weight: 500;
+      color: #003cbd;
+      background-color: transparent;
+    }
+    .profile{
+      font-size: 1rem;
+      padding: 0.15rem 0.4rem;
+      background-color: white;
+      border: 1px solid grey;
+      border-radius: 2rem;
+      cursor: pointer;
+      color: #003cbd;
+      transition: all 0.3s ease-in-out;
+      font-weight: 500;
+    }
+    .profile:hover{
+      background-color: #003cbd;
+      color: white;
+      border-color: #002D62;
+    }
+    .searchbar , .name , .description , .amount{
+      width: 300px;
+      max-width: 300px;
+      font-size: 1rem;
+      padding: 0.2rem 0.5rem;
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+      border: 1px solid blue;
+    }
+    input:focus{
+      outline: 0;
+    }
+    .search-btn{
+      border: 1px solid blue;
+      padding: 0 0.2rem;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+      cursor: pointer;
+      background-color: rgb(219, 219, 219);
+    }
+    .search-btn:hover{
+      color: blue;
+    }
+    .add-form{
+      flex-direction: column;
+      /* border: 1px solid red; */
+      gap: 0.1rem;
+      max-width: max-content;
+      padding: 1rem 0;
+    }
+    #category{
+      width: 300px;
+      border: 1px solid blue;
+    }
+    label{
+      color: #002D62;
+    }
+    .name , .description , .amount{
+      font-size: 0.9rem;
+      padding: 0.1rem 0.5rem;
+    }
+    .add-btn{
+      margin-top: 0.3rem;
+      max-width: 100px;
+      border: 1px solid blue;
+      background-color: white;
+      color: #002D62;
+      font-weight: 500;
+      border-radius: 0.1rem;
+      cursor: pointer;
+    }
+    .add-btn:hover{
+      background-color: #edf5ff;
+    }
+    .l_desc , .drop {
+      margin-top: 0.6rem;
+    }
+    .data-container{
+      display: flex;
+      max-width: 100%;
+      flex-wrap: wrap;
+      /* justify-content: space-evenly; */
+      gap: 1.8rem;
+    }
+    .box{
+      /* border: 1px solid rgb(78, 5, 167); */
+      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.4);
+      padding: 0.8rem 0.5rem;
+      min-width: 240px;
+      border-radius: 0.6rem;
+      max-width: 300px;
+      background-color: #f4ffe369;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .item-name{
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #002D62;
+    }
+    strong{
+      color: #3E2723;
+    }
+    .head{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .delete-btn{
+      display: inline-block;
+      padding: 0 0.4rem;
+      border: 1px solid red;
+      border-radius: 50%;
+      color: red;
+      transition: all 0.3s ease-in-out;
+      /* animation: rotate 1s ease-in-out infinite alternate; */
+    }
+    /* @keyframes rotate {
+      0%{
+        transform: rotate(-20deg);
+        background-color: white;
+        color: red;
+        transform: scale(1);
+      }
+      100%{
+        transform: rotate(20deg);
+        background-color: red;
+        color: white;
+        transform: scale(1.1);
+      }
+    } */
+    .delete-btn:hover{background-color: red;
+      color: white;
+    }
+    .filter-form{
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    #date-option{
+      border-radius: 5px;
+      border: 1px solid rgb(0, 0, 189);
+      font-size: 0.9rem;
+    }
+    option{
+      font-size: 0.8rem;
+    }
+    .filter-btn{
+      padding: 0 0.3rem;
+      background-color: #004390;
+      color: white;
+      border-radius: 2px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      border: 1px solid rgb(50, 50, 73);
+      margin-left: 1rem;
+      transition: all 0.3s ease-in-out;
+    }
+    .filter-btn:hover{
+      background-color: white;
+      color: #004390;
+    }
+    .filter-form div{
+      display: flex;
+      align-items: center;
+    }
+    .reset-btn{
+      margin-left: 0.3rem;
+      color: red;
+      position: relative;
+    }
+    .expense-block{
+      max-width: 200px;
+      font-size: 1.2rem;
+      font-weight: 400;
+      padding: 0 0.5rem;
+      border: 2px solid blue;
+      background-color: rgb(246, 246, 246);
+      border-radius: 5px;
+    }
+    .profile-box{
+      position: absolute;
+      width: 7.2rem;
+      height: 130px;
+      border: 1px solid rgb(0, 0, 0);
+      background-color: white;
+      border-radius: 10px;
+      display: none;
+      right: 10vw;
+      top: 4rem;
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem 0rem;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo{
+      display: none;
+    }
+    .image{
+      display: flex;
+      justify-content: center;
+    }
+    .image img{
+      width: 45px;
+      height: 45px;
+    }
+    .profile-data{
+      font-size: 0.8rem;
+      text-align: center;
+    }
+    .profile-uname{
+      font-size: 0.7rem;
+      color: grey;
+    }
+    .expense-box{
+      display: flex;
+      gap: 1rem;
+    }
+    .expense-amount{
+      min-width: 2.5rem;
+      border: 3px solid red;
+      border-radius: 3px;
+      background-color: whitesmoke;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      padding: 0 0.3rem;
+    }
+    .positive{
+      border-color: blueviolet;
+      color: blue;
+    }
+    .negative{
+      color: red;
+    }
+    .expense-block span{
+      font-weight: 500;
+      color: rgb(0, 0, 163);
+    }
+    @media (max-width:1025px) {
+      *{
+        font-size: 15px;
+      }
+      .data-container{
+        gap: 1.4rem;
+      }
+      .container{
+        width: 92vw;
+      }
+      .profile-box{
+        right: 4vw;
+      }
+      .box{
+        min-width: 225px;
+      }
+    }
+    @media (max-width:675px){
+      *{
+        font-size: 14px;
+      }
+      .image img{
+        height: 40px;
+        width: 40px;
+      }
+      .container{
+        width: 94vw;
+      }
+      .profile-box{
+        right: 3vw;
+        gap: 0.5rem;
+      }
+      .box{
+        min-width: 210px;
+      }
+    }
+    @media (max-width:475px) {
+      *{
+        font-size: 13.5px;
+      }
+      .logo{
+        display: block;
+      }
+      .logo_b{
+        display: none;
+      }
+      .container{
+        width: 92vw;
+      }
+      .profile-box{
+        right: 4vw;
+        width: 6.2rem;
+        height: 115px;
+      }
+      .image img{
+        height: 35px;
+        width: 35px;
+      }
+      .box{
+        min-width: 155px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2 class="logo_b">Expense Tracker</h2>
+      <h2 class="logo">ExpenseT</h2>
+      <!-- <div class="search">
+        <form action="/" method="post">
+          <input type="text" placeholder="Enter to search..." class="searchbar">
+          <input type="submit" value="Search" class="search-btn">
+        </form>
+      </div> -->
+      <div class="nav">
+        <a href="/home">Home</a>
+        <a href="/logout">Logout</a>
+        <button class="profile">Profile</button>
+        <div class="profile-box">
+          <div class="image"><img src="/images/user.png"></div>
+          <div class="profile-data">
+            <p class="profile-name"><%=name%></p>
+            <p class="profile-uname">@<%=username%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <div class="expense-box">
+      <p class="expense-block">Expense : <span><%=expense%></span></p>
+      <div class="expense-amount positive"><%=positiveE%></div>
+      <div class="expense-amount negative"><%=negativeE%></div>
+    </div>
+    <br>
+    <form action="/filter" method="post" class="filter-form">
+      <div>
+        <select name="date" id="date-option">
+        <option value="Today">Today</option>
+        <option value="Last7days">Last 7 days</option>
+      </select>
+    </div>
+    <input type="submit" value="Filter" class="filter-btn">
+    <a href="/reset-filter" class="reset-btn">Reset</a>
+    </form>
+    <br><br><br>
+    <div class="data-container">
+      <% data.forEach((item) => { %>
+        <div class="box">
+          <div class="head">
+            <p class="item-name"><%= item.name %></p>
+            <a href="/delete/<%=item.id%>" class="delete-btn">D</a>
+          </div>
+          <div class="content">
+            <p><strong>Amount:</strong> <%= item.amount %></p>
+            <p><strong>Description:</strong> <%= item.description %></p>
+            <p><strong>Category:</strong> <%= item.category %></p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <br><br><br><br>
+    <form action="/create" method="post" class="add-form">
+      <label for="name">Name :</label>
+      <input type="text" name="name" placeholder="Enter name..." class="name">
+      <label for="amount">Amount :</label>
+      <input type="text" name="amount" placeholder="Enter the amount..." class="amount">
+      <label for="description" class="l_desc">Description :</label>
+      <input type="text" name="description" placeholder="Enter Description..." class="description">
+      <label for="category" class="drop">Category :</label>
+      <select id="category" name="category">
+        <option value="Personal">Personal</option>
+        <option value="Domestic">Domestic</option>
+      </select>
+      <input type="submit" value="Add" class="add-btn">
+    </form>
+  </div>
+  <br>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const profile = document.querySelector('.profile');
+  const profileBox = document.querySelector('.profile-box');
+  const container = document.querySelector('.container');
+
+  // Hide the profile box initially when the page loads
+  profileBox.style.display = 'none';
+
+  profile.addEventListener('click', (event) => {
+    event.stopPropagation();
+    // Toggle profile box visibility when the profile button is clicked
+    if (profileBox.style.display === 'flex') {
+      profileBox.style.display = 'none';
+    } else {
+      profileBox.style.display = 'flex';
+    }
+  });
+
+  // Hide the profile box when clicking anywhere else
+  container.addEventListener('click', (event) => {
+    profileBox.style.display = 'none';
+  });
+
+  // Prevent the profile box from closing when clicked inside
+  profileBox.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
+});
+
+  </script>
+</body>
+</html>
