@@ -10,7 +10,9 @@ require('dotenv').config();
 const DB_URI = process.env.MONGO_URI;
 const PORT = process.env.PORT || 3000;
 const SESSION_SECRET = process.env.SESSION_SECRET;
-mongoose.connect(DB_URI);
+mongoose.connect(DB_URI,{
+  maxPoolSize: 10,
+});
 
 const userD = require('./models/userD');
 const userDetails = require('./models/userDetails');
@@ -18,12 +20,12 @@ const { hash } = require('crypto');
 
 app.use(express.static('public'));
 app.set('view engine','ejs');
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1d' }));
 app.use(express.urlencoded({extended : true}));
 app.use(session({
   secret: SESSION_SECRET,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
   cookie: { maxAge: 10*60*1000}
 }));
@@ -31,6 +33,7 @@ app.use((req, res, next) => {
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   next();
 });
+
 
 
 
@@ -65,12 +68,9 @@ app.post('/register',async (req,res)=>{
 
 app.post('/login',async (req,res)=>{
   const {username , password} = req.body;
-  // console.log(req.body);
   req.session.username = username;
   const checkUser = await userD.findOne({ username : username});
-  // console.log(checkUser)
   if(checkUser) {
-    // console.log(checkUser)
     const check = await matchpassword(password , checkUser.password);
     if(check) {
       console.log('Successfully Logged in.');
@@ -114,8 +114,7 @@ app.get('/update/:username',isAuthenticated,async (req,res)=>{
   const finalResult = await fetchExpense(req.session.username);
   const user = await userD.findOne({username : req.session.username});
   const name = user.name;
-  const data = await fetchData(req.session.username);
-  return res.render('index', { data: data , expense : finalResult.totalAmount , name : name , username : req.session.username , positiveE : finalResult.positive , negativeE : finalResult.negative});
+  return res.redirect('/home');
 })
 
 
@@ -191,7 +190,8 @@ async function fetchExpense(username) {
     { $match: { username: username } },
     { $group: { _id: null, totalAmount: { $sum: "$amount" } , positive : { $sum : { $cond :[{ $gte : ["$amount",0]} , "$amount" , 0 ] } },
     negative : { $sum : { $cond :[{ $lt : ["$amount",0]} , "$amount",0 ] } }
-   } }
+   } },
+   { $project: { _id: 0, totalAmount: 1, positive: 1, negative: 1 } }
   ]);
   if(result.length>0){
     const finalResult = {totalAmount: result[0].totalAmount , positive : result[0].positive , negative : result[0].negative};
@@ -219,7 +219,7 @@ async function fetchData(username) {
 
 async function hashpassword(password) {
   try {
-    const saltrounds = 10;
+    const saltrounds = 8;
     const hpassword = await bcrypt.hash(password,saltrounds);
     return hpassword;
   }
