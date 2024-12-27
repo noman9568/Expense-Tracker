@@ -106,13 +106,9 @@ app.post('/create',isAuthenticated,async (req,res)=>{
     const date = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
     // console.log(date);
     await userDetails.create({username , name , date , amount , category , description , });
-    return res.redirect(`/update/${username}`);
+    return res.redirect('/home');
   }
 })
-app.get('/update/:username',isAuthenticated,async (req,res)=>{
-  return res.redirect('/home');
-})
-
 
 app.get('/delete/:id',isAuthenticated,async (req,res)=>{
   const id = req.params.id;
@@ -176,7 +172,7 @@ app.post('/filter',isAuthenticated,async (req,res)=>{
   }
 })
 app.get('/reset-filter',isAuthenticated,(req,res)=>{
-  return res.redirect(`/update/${req.session.username}`);
+  return res.redirect('/home');
 })
 
 
