@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins',serif;
+      /* outline: 1px solid red; */
+    }
+    body {
+      background: linear-gradient(to right, #dce4e1, #e2e4cf);
+    }
+    .container{
+      width: 80vw;
+      margin: 0 auto;
+      margin-top: 2rem;
+    }
+    .header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+    h2{
+      font-weight: 400;
+      color: #002D62;
+      font-size: 1.8rem;
+      background-color: transparent;
+    }
+    form , .nav{
+      display: flex;
+    }
+    .nav{
+      gap: 1.5rem;
+      background-color: transparent;
+      align-items: center;
+    }
+    a{
+      text-decoration: none;
+      font-weight: 500;
+      color: #003cbd;
+      background-color: transparent;
+    }
+    .profile{
+      font-size: 1rem;
+      padding: 0.15rem 0.4rem;
+      background-color: white;
+      border: 1px solid grey;
+      border-radius: 2rem;
+      cursor: pointer;
+      color: #003cbd;
+      transition: all 0.3s ease-in-out;
+      font-weight: 500;
+    }
+    .profile:hover{
+      background-color: #003cbd;
+      color: white;
+      border-color: #002D62;
+    }
+    .searchbar{
+      width: 300px;
+      max-width: 300px;
+      font-size: 1rem;
+      padding: 0.2rem 0.5rem;
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+      border: 1px solid blue;
+    }
+    input:focus{
+      outline: 0;
+    }
+    .search-btn{
+      border: 1px solid blue;
+      padding: 0 0.2rem;
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+      cursor: pointer;
+      background-color: rgb(219, 219, 219);
+    }
+    .search-btn:hover{
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Expense Tracker</h2>
+      <div class="search">
+        <form action="/" method="post">
+          <input type="text" placeholder="Enter to search..." class="searchbar">
+          <input type="submit" value="Search" class="search-btn">
+        </form>
+      </div>
+      <div class="nav">
+        <a href="#">Home</a>
+        <a href="/logout">Logout</a>
+        <button class="profile">Profile</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
