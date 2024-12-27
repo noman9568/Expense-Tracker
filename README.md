@@ -1,15 +1,16 @@
 #Expense Tracker
-##It's a simple Expense Tracker web application where user can save their expenses.
+--
+It's a simple Expense Tracker web application where user can save their expenses.
 
 
-##FrontEnd
--EJS
--CSS
--JavaScript
+FrontEnd
+1.EJS
+2.CSS
+3.JavaScript
 
-##Backend
--Node.js
--Express.js
+Backend
+1.Node.js
+2.Express.js
 
-##Database
--MongoDB
+Database
+MongoDB
