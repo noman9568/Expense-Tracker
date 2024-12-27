@@ -3,13 +3,13 @@ It's a simple Expense Tracker web application where user can save their expenses
 
 
 ## FrontEnd
-1.EJS
-2.CSS
-3.JavaScript
+-EJS
+-CSS
+-JavaScript
 
 ## Backend
-1.Node.js
-2.Express.js
+-Node.js
+-Express.js
 
 ## Database
-MongoDB
+-MongoDB
