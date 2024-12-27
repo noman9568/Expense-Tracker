@@ -85,13 +85,13 @@ app.post('/login',async (req,res)=>{
   }
 })
 app.get('/home',isAuthenticated,async (req,res)=>{
-  const data = await fetchData(req.session.username);
-  const finalResult = await fetchExpense(req.session.username);
-  console.log(finalResult);
-  const user = await userD.findOne({username : req.session.username});
-  const name = user.name;
-  // console.log(expense);
-  return res.render('index', { data: data , expense : finalResult.totalAmount , name : name , username : req.session.username , positiveE : finalResult.positive , negativeE : finalResult.negative});
+  const [user , data , finalResult] = await Promise.all([
+    userD.findOne({username : req.session.username}),
+    fetchData(req.session.username),
+    fetchExpense(req.session.username)
+  ]);
+  const { name } = user;
+  return res.render('index', { data, expense : finalResult.totalAmount , name, username : req.session.username , positiveE : finalResult.positive , negativeE : finalResult.negative});
 })
 
 
