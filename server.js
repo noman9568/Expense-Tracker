@@ -110,25 +110,20 @@ app.post('/create',isAuthenticated,async (req,res)=>{
   }
 })
 app.get('/update/:username',isAuthenticated,async (req,res)=>{
-  // const username = req.params.username;
-  const finalResult = await fetchExpense(req.session.username);
-  const user = await userD.findOne({username : req.session.username});
-  const name = user.name;
   return res.redirect('/home');
 })
 
 
 app.get('/delete/:id',isAuthenticated,async (req,res)=>{
   const id = req.params.id;
-  const username = req.session.username;
-  await userDetails.findOneAndDelete({username : username , _id : id});
-  return res.redirect(`/update/${username}`);
+  await userDetails.findOneAndDelete({username : req.session.username , _id : id});
+  return res.redirect('/home');
 })
 
 app.get('/logout',(req,res)=>{
   req.session.destroy(err=>{
     if(err) {
-      return res.redirect(`/update/${req.session.username}`);
+      return res.redirect('/home');
     }
     else {
       return res.redirect('/');
