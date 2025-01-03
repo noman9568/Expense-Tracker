@@ -10,15 +10,15 @@ require('dotenv').config();
 const DB_URI = process.env.MONGO_URI;
 const PORT = process.env.PORT || 3000;
 const SESSION_SECRET = process.env.SESSION_SECRET;
-mongoose.connect(DB_URI,{
-  maxPoolSize: 10,
+mongoose.connect(DB_URI).then(()=>{
+  console.log('Connected to MongoDB.');
+}).catch((err)=>{
+  console.log('Error connecting to the database : ' + err);
 });
 
 const userD = require('./models/userD');
 const userDetails = require('./models/userDetails');
-const { hash } = require('crypto');
 
-app.use(express.static('public'));
 app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1d' }));
 app.use(express.urlencoded({extended : true}));
@@ -128,7 +128,7 @@ app.get('/logout',(req,res)=>{
 })
 
 app.post('/filter',isAuthenticated,async (req,res)=>{
-  const date = req.body;
+  const { date } = req.body;
   // console.log(date);
   const currentDate = new Date();
   const year = currentDate.getFullYear();
