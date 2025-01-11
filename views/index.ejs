@@ -17,7 +17,7 @@
       /* outline: 1px solid red; */
     }
     body {
-      background: linear-gradient(to right, #dce4e1, #e2e4cf);
+      background: linear-gradient(to bottom, #c8d9ff, #FFFFFF);
     }
     .container{
       width: 80vw;
@@ -99,26 +99,37 @@
     #category{
       width: 300px;
       border: 1px solid blue;
+      background-color: white;
+      border-radius: 2px;
+    }
+    #category:focus{
+      outline: 1px solid rgb(0, 0, 91);
     }
     label{
       color: #002D62;
     }
     .name , .description , .amount{
+      border-radius: 2px;
       font-size: 0.9rem;
-      padding: 0.1rem 0.5rem;
+      padding: 0.15rem 0.5rem;
+    }
+    .name:focus , .description:focus, .amount:focus{
+      outline: 1px solid rgb(0, 0, 91);
     }
     .add-btn{
       margin-top: 0.3rem;
-      max-width: 100px;
+      max-width: 90px;
       border: 1px solid blue;
-      background-color: white;
-      color: #002D62;
+      background-color: rgb(0, 0, 206);
+      color: white;
       font-weight: 500;
-      border-radius: 0.1rem;
+      border-radius: 0.4rem;
       cursor: pointer;
+      transition: all 0.3s ease-in-out;
     }
     .add-btn:hover{
-      background-color: #edf5ff;
+      background-color: white;
+      color: rgb(0, 0, 206);
     }
     .l_desc , .drop {
       margin-top: 0.6rem;
@@ -132,12 +143,12 @@
     }
     .box{
       /* border: 1px solid rgb(78, 5, 167); */
-      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.4);
+      box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.4);
       padding: 0.8rem 0.5rem;
       min-width: 240px;
       border-radius: 0.6rem;
       max-width: 300px;
-      background-color: #f4ffe369;
+      background-color: #f6f7f469;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
